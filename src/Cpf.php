@@ -3,25 +3,23 @@
 
 class Cpf
 {
-    private $numero;
+    private $numeros;
+public function __construct($numeros)
+{
+    $numeros = filter_var($numeros, FILTER_VALIDATE_REGEXP,[
+        'options' => [
+            'regexp'=> '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/'
+        ]
+    ]);
 
-    public function __construct($numero)
-    {
-        $numero = filter_var($numero,  FILTER_VALIDATE_REGEXP,[
-            'options' => [
-                'regexp'=> '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/'
-            ]
-        ]);
-
-        if($numero === false){
-            echo utf8_encode("Cpf inválido").PHP_EOL;
-        }
-
-        $this->numero=$numero;
+    if($numeros === false){
+        echo utf8_encode("CPF inválido");
     }
+    $this->numeros = $numeros;
+}
 
-    public function getNumero()
+    public function getNumeros()
     {
-        return $this->numero;
+        return $this->numeros;
     }
 }

@@ -1,4 +1,8 @@
 <?php
+
+namespace Erickson\Loja\Modelo\Cliente;
+
+
 require 'Cliente.php';
 
 class Cadastro

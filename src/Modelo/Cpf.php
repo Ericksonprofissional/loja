@@ -1,5 +1,6 @@
 <?php
 
+namespace Erickson\Loja\Modelo;
 
 class Cpf
 {

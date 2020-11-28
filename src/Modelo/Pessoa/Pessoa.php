@@ -1,18 +1,19 @@
 <?php
-require 'Cpf.php';
 
-class Cliente
+namespace Erickson\Loja\Modelo\Pessoa;
+class Pessoa
 {
-    private $cpf;
-    private $nome;
-    public function __construct(Cpf $cpf, $nome)
+    protected $nome;
+    protected $cpf;
+
+    public function __construct($nome,Cpf $cpf)
     {
-        $this->cpf = $cpf;
-        $this->nome = $nome;
         $this->validaNome($nome);
+        $this->nome = $nome;
+        $this->cpf = $cpf;
     }
 
-    public function validaNome($nome)
+    protected function validaNome($nome)
     {
         $nome = filter_var($nome, FILTER_VALIDATE_REGEXP,[
             'options' => [
@@ -25,13 +26,13 @@ class Cliente
         $this->nome = $nome ;
     }
 
-    public function getCpf()
-    {
-        return $this->cpf->getNumeros();
-    }
-
     public function getNome()
     {
         return $this->nome;
+    }
+
+    public function getCpf()
+    {
+        return $this->cpf->getNumeros();
     }
 }
